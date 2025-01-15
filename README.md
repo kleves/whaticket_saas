@@ -1,49 +1,50 @@
-🍷 Instalação Automatica
-Fazendo download do instalador e executando o instalador: 💾
+# 🍷 Instalação Automatica
+Auto instalador do whaticket para ubuntu 24 e node 20 | 💾
 
-# whaticket_saas
-Auto instalador do whaticket para ubuntu 24 e node 20
-
+## whaticket_saas
 
 Fazendo download do instalador e executando o instalador: 💾
 
-sudo apt install -y git && git clone https://github.com/AutoAtende/AA-INSTALLER.git autoatende && sudo chmod -R 777 ./autoatende && cd ./autoatende && sudo ./install_primaria
-Requisitos
----	Mínimo	Recomendado
-Node	18.x	20.x
-Ubuntu	Auto 20.x	Manual 22.x
-Memória RAM	4Gb	8Gb
-🗿 Instalação Manual -------------------------------------------------
-Realizando atualizações na vps
-A instalação manual usa o redis fora do docker.
+``sudo apt install -y git && git clone https://github.com/kleves/whaticket_instalador.git autoatende && sudo chmod -R 777 ./instalador && cd ./instaladore && sudo ./install_primaria``
 
-Atulizações de pacotes e instalação de libs que serão utilizadas pela vps.
+## Requisitos
+| --- |	Mínimo	| Recomendado|
+|---|---|---|
+|Node	| 18.x |	20.x |
+|Ubuntu	|Auto 20.x	| Manual 22.x |
+|Memória RAM	|4Gb	|8Gb|
 
-sudo apt update && sudo apt upgrade -y
- sudo apt-get install -y build-essential libgbm-dev wget unzip fontconfig locales gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils git
-Instalando fail2ban...
-fail2ban serve para evitar acessos a vps por força bruta, quando um ip tenta acessar a vps e erra a senha varias vezes esse pacote joga o ip para uma black list
 
-sudo apt install fail2ban -y && sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-Configurando fail2ban...
-sudo systemctl enable fail2ban
-sudo systemctl start fail2ban
-Configurando firewall...
+## 🗿 Instalação Manual -------------------------------------------------
+Realizando atualizações na vps\
+A instalação manual usa o redis fora do docker.\
+Atualizações de pacotes e instalação de libs que serão utilizadas pela vps.  
+
+``sudo apt update && sudo apt upgrade -y `` \
+ ``sudo apt-get install -y build-essential libgbm-dev wget unzip fontconfig locales gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils git``  \
+### Instalando fail2ban...
+**fail2ban** serve para evitar acessos a vps por força bruta, quando um ip tenta acessar a vps e erra a senha varias vezes esse pacote joga o ip para uma black list \
+
+``sudo apt install fail2ban -y && sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`` \  
+### Configurando fail2ban...
+``sudo systemctl enable fail2ban`` \
+``sudo systemctl start fail2ban``  
+### Configurando firewall...
 Ative o firewall da vps para entrada e saida de informações controladas.
 
-sudo ufw default allow outgoing
-sudo ufw default deny incoming
-sudo ufw allow ssh
-sudo ufw allow 22
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw allow 5432
-sudo ufw allow 6379
-sudo ufw enable
-Instalando NodeJS 20...
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install -y nodejs
-Instalando o redis ...
+``sudo ufw default allow outgoing``\
+``sudo ufw default deny incoming``\
+``sudo ufw allow ssh``
+``sudo ufw allow 22``\
+``sudo ufw allow 80``\
+``sudo ufw allow 443``\
+``sudo ufw allow 5432``\
+``sudo ufw allow 6379``\
+``sudo ufw enable``  
+### Instalando NodeJS 20...
+``curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -``
+``sudo apt install -y nodejs``
+### Instalando o redis ...
 sudo apt install redis
 sudo systemctl enable redis-server
 sudo systemctl start redis-server
